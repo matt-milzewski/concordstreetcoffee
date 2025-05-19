@@ -109,6 +109,15 @@
         </div>
     </nav>
 
+    <!-- Mobile Menu (hidden by default) -->
+    <div id="mobile-menu" class="fixed top-16 left-0 w-full bg-cream shadow-lg z-40 flex flex-col items-center space-y-6 py-8 text-lg font-poppins text-coffee hidden">
+        <a href="#home" class="hover:text-teal transition-colors">Home</a>
+        <a href="#menu" class="hover:text-teal transition-colors">Menu</a>
+        <a href="#story" class="hover:text-teal transition-colors">Story</a>
+        <a href="#visit" class="hover:text-teal transition-colors">Visit</a>
+        <a href="#contact" class="hover:text-teal transition-colors">Contact</a>
+    </div>
+
     <!-- Hero Section -->
     <section id="home" class="relative h-screen flex items-center justify-center">
         <img src="http://concordstreetcoffee.s3-website-ap-southeast-2.amazonaws.com/assets/img/hero.webp"
@@ -350,6 +359,32 @@
                 });
             });
         });
+    </script>
+
+    <!-- Mobile Menu Toggle Script -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const menuBtn = document.querySelector('nav button[aria-label="Toggle menu"]');
+        const mobileMenu = document.getElementById('mobile-menu');
+        let menuOpen = false;
+
+        menuBtn.addEventListener('click', function() {
+            menuOpen = !menuOpen;
+            if (menuOpen) {
+                mobileMenu.classList.remove('hidden');
+            } else {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+
+        // Optional: Hide menu when a link is clicked
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuOpen = false;
+            });
+        });
+    });
     </script>
 </body>
 </html> 
