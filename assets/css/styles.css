@@ -1,0 +1,120 @@
+/* Custom styles for Concord Street Coffee */
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Mobile menu animation */
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Hero image overlay animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Button hover effects */
+.hover\:bg-teal\/90:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Form focus states */
+input:focus, textarea:focus {
+    box-shadow: 0 0 0 3px rgba(0, 137, 123, 0.1);
+}
+
+/* Social icons hover animation */
+.social-icon {
+    transition: transform 0.2s ease-in-out;
+}
+
+.social-icon:hover {
+    transform: scale(1.1);
+}
+
+/* Menu item hover effect */
+.menu-item {
+    transition: transform 0.2s ease-in-out;
+}
+
+.menu-item:hover {
+    transform: translateX(4px);
+}
+
+/* Accessibility focus styles */
+:focus {
+    outline: 2px solid #00897B;
+    outline-offset: 2px;
+}
+
+/* Print styles */
+@media print {
+    .no-print {
+        display: none;
+    }
+    
+    body {
+        color: #000;
+        background: #fff;
+    }
+    
+    a {
+        text-decoration: none;
+        color: #000;
+    }
+}
+
+/* Loading animation for images */
+img[loading="lazy"] {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+img[loading="lazy"].loaded {
+    opacity: 1;
+}
+
+/* Mobile menu styles */
+@media (max-width: 768px) {
+    .mobile-menu {
+        animation: slideDown 0.3s ease-out;
+    }
+}
+
+/* Hero section text animation */
+.hero-text {
+    animation: fadeIn 1s ease-out;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #FAF9F7;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #4E342E;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #00897B;
+} 
