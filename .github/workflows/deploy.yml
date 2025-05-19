@@ -22,6 +22,9 @@ jobs:
 
       - name: Deploy to S3
         run: |
+          # Apply CORS configuration
+          aws s3api put-bucket-cors --bucket ${{ secrets.S3_BUCKET }} --cors-configuration file://s3-config.json
+
           # Sync all files except those we want to exclude
           aws s3 sync . s3://${{ secrets.S3_BUCKET }} \
             --delete \
@@ -29,6 +32,7 @@ jobs:
             --exclude ".github/*" \
             --exclude "*.DS_Store" \
             --exclude "README.md" \
+            --exclude "s3-config.json" \
             --cache-control "max-age=3600"
 
           # Set correct content types for specific files
