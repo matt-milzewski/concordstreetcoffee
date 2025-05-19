@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Debug</title>
+    <style>
+        .image-container {
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Image Loading Debug</h1>
+    
+    <div class="image-container">
+        <h2>Test 1: Direct S3 URL</h2>
+        <img src="http://concordstreetcoffee.s3-website-ap-southeast-2.amazonaws.com/assets/img/hero.webp" 
+             alt="Test 1"
+             onerror="this.onerror=null; console.log('Test 1 failed:', this.src); this.src='https://placehold.co/1920x1080'"
+             onload="console.log('Test 1 loaded:', this.src)">
+    </div>
+
+    <div class="image-container">
+        <h2>Test 2: HTTPS S3 URL</h2>
+        <img src="https://concordstreetcoffee.s3-website-ap-southeast-2.amazonaws.com/assets/img/hero.webp" 
+             alt="Test 2"
+             onerror="this.onerror=null; console.log('Test 2 failed:', this.src); this.src='https://placehold.co/1920x1080'"
+             onload="console.log('Test 2 loaded:', this.src)">
+    </div>
+
+    <div class="image-container">
+        <h2>Test 3: With explicit dimensions</h2>
+        <img src="http://concordstreetcoffee.s3-website-ap-southeast-2.amazonaws.com/assets/img/hero.webp" 
+             alt="Test 3"
+             width="1920"
+             height="1080"
+             style="width: 100%; height: auto;"
+             onerror="this.onerror=null; console.log('Test 3 failed:', this.src); this.src='https://placehold.co/1920x1080'"
+             onload="console.log('Test 3 loaded:', this.src)">
+    </div>
+
+    <div class="image-container">
+        <h2>Test 4: As background image</h2>
+        <div style="width: 100%; height: 300px; background-image: url('http://concordstreetcoffee.s3-website-ap-southeast-2.amazonaws.com/assets/img/hero.webp'); background-size: cover; background-position: center;"></div>
+    </div>
+</body>
+</html> 

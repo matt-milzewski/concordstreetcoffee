@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Test</title>
+</head>
+<body>
+    <h1>Testing Hero Image</h1>
+    <img src="http://concordstreetcoffee.s3-website-ap-southeast-2.amazonaws.com/assets/img/hero.webp" 
+         alt="Test image" 
+         style="max-width: 100%; height: auto;"
+         onerror="this.onerror=null; console.log('Image failed to load:', this.src); this.src='https://placehold.co/1920x1080'"
+         onload="console.log('Image loaded successfully:', this.src)">
+</body>
+</html> 
