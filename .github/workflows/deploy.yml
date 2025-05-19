@@ -23,7 +23,17 @@ jobs:
       - name: Deploy to S3
         run: |
           # Apply CORS configuration
-          aws s3api put-bucket-cors --bucket ${{ secrets.S3_BUCKET }} --cors-configuration file://s3-config.json
+          aws s3api put-bucket-cors --bucket ${{ secrets.S3_BUCKET }} --cors-configuration '{
+            "CORSRules": [
+              {
+                "AllowedHeaders": ["*"],
+                "AllowedMethods": ["GET"],
+                "AllowedOrigins": ["*"],
+                "ExposeHeaders": [],
+                "MaxAgeSeconds": 3000
+              }
+            ]
+          }'
 
           # Sync all files except those we want to exclude
           aws s3 sync . s3://${{ secrets.S3_BUCKET }} \
