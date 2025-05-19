@@ -22,4 +22,29 @@ jobs:
 
       - name: Deploy to S3
         run: |
-          aws s3 sync dist/ s3://${{ secrets.S3_BUCKET }} --delete
+          # Sync all files except those we want to exclude
+          aws s3 sync . s3://${{ secrets.S3_BUCKET }} \
+            --delete \
+            --exclude ".git/*" \
+            --exclude ".github/*" \
+            --exclude "*.DS_Store" \
+            --exclude "README.md" \
+            --cache-control "max-age=3600"
+
+          # Set correct content types for specific files
+          aws s3 cp index.html s3://${{ secrets.S3_BUCKET }}/index.html \
+            --content-type "text/html" \
+            --cache-control "max-age=3600"
+
+          aws s3 cp assets/css/styles.css s3://${{ secrets.S3_BUCKET }}/assets/css/styles.css \
+            --content-type "text/css" \
+            --cache-control "max-age=3600"
+
+          # Set correct content types for images
+          aws s3 cp assets/img/hero.webp s3://${{ secrets.S3_BUCKET }}/assets/img/hero.webp \
+            --content-type "image/webp" \
+            --cache-control "max-age=86400"
+
+          aws s3 cp assets/img/logo.svg s3://${{ secrets.S3_BUCKET }}/assets/img/logo.svg \
+            --content-type "image/svg+xml" \
+            --cache-control "max-age=86400"
